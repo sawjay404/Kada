@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Hammer, Wrench, Paintbrush, Lightbulb, 
-  ArrowRight, Menu, X, Star, Send
+  ArrowRight, Menu, X, Star, Send, Instagram, Phone
 } from "lucide-react";
 
 export default function Home({ setIsFormOpen }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  // Using a local state to handle the popup within this component
   const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
@@ -28,6 +27,7 @@ export default function Home({ setIsFormOpen }) {
 
   const handleOpenForm = () => {
     setShowPopup(true);
+    setMobileMenuOpen(false);
     if (setIsFormOpen) setIsFormOpen(true);
   };
 
@@ -35,94 +35,99 @@ export default function Home({ setIsFormOpen }) {
     <main className="relative min-h-screen bg-slate-50 flex flex-col justify-center overflow-hidden">
       
       {/* --- POPUP FORM MODAL --- */}
-      <AnimatePresence>
-        {showPopup && (
-          <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 lg:p-6">
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setShowPopup(false)}
-              className="absolute inset-0 bg-slate-900/60 backdrop-blur-md"
-            />
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-lg bg-white rounded-[3rem] p-8 lg:p-12 shadow-2xl"
-            >
-              <button 
-                onClick={() => setShowPopup(false)}
-                className="absolute top-8 right-8 text-slate-400 hover:text-slate-900 transition-colors"
-              >
-                <X size={28} />
-              </button>
+<AnimatePresence>
+  {showPopup && (
+    <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 lg:p-6">
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={() => setShowPopup(false)}
+        className="absolute inset-0 bg-slate-900/60 backdrop-blur-md"
+      />
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.9, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.9, y: 20 }}
+        className="relative w-full max-w-lg bg-white rounded-[3rem] p-8 lg:p-12 shadow-2xl"
+      >
+        <button 
+          onClick={() => setShowPopup(false)}
+          className="absolute top-8 right-8 text-slate-400 hover:text-slate-900 transition-colors"
+        >
+          <X size={28} />
+        </button>
 
-              <h2 className="text-3xl font-black tracking-tighter text-slate-900 uppercase mb-2">
-                Get Your <span className="text-orange-500">Quote</span>
-              </h2>
-              <p className="text-slate-500 font-medium mb-8">Fill in the details for your NJ home project.</p>
+        <h2 className="text-3xl font-black tracking-tighter text-slate-900 uppercase mb-2">
+          Get Your <span className="text-orange-500">Quote</span>
+        </h2>
+        <p className="text-slate-500 font-medium mb-8">Fill in the details for your NJ home project.</p>
 
-              <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-                <div className="space-y-1">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4">Full Name</label>
-                  <input type="text" placeholder="John Doe" className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-orange-500/20" />
-                </div>
-                <div className="space-y-1">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4">Email Address</label>
-                  <input type="email" placeholder="john@example.com" className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-orange-500/20" />
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-1">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4">Location</label>
-                    <input type="text" placeholder="Jersey City" className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-orange-500/20" />
-                  </div>
-                  <div className="space-y-1">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4">Address</label>
-                    <input type="text" placeholder="123 Main St" className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-orange-500/20" />
-                  </div>
-                </div>
-                <button className="w-full py-5 bg-orange-500 text-white rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-orange-600 shadow-xl shadow-orange-200 transition-all flex items-center justify-center gap-3 mt-4">
-                  Send Quote Request <Send size={18} />
-                </button>
-              </form>
-            </motion.div>
+        <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+          <div className="space-y-1">
+            <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4">Full Name</label>
+            <input type="text" placeholder="John Doe" className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-orange-500/20 text-slate-900 font-bold" />
           </div>
-        )}
-      </AnimatePresence>
+          
+          <div className="space-y-1">
+            <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4">Email Address</label>
+            <input type="email" placeholder="john@example.com" className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-orange-500/20 text-slate-900 font-bold" />
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-1">
+              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4">Location</label>
+              <input type="text" placeholder="Jersey City" className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-orange-500/20 text-slate-900 font-bold" />
+            </div>
+            <div className="space-y-1">
+              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4">Address</label>
+              <input type="text" placeholder="123 Main St" className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-orange-500/20 text-slate-900 font-bold" />
+            </div>
+          </div>
+
+          <button className="w-full py-5 bg-orange-500 text-white rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-orange-600 shadow-xl shadow-orange-200 transition-all flex items-center justify-center gap-3 mt-4 active:scale-95">
+            Send Quote Request <Send size={18} />
+          </button>
+        </form>
+      </motion.div>
+    </div>
+  )}
+</AnimatePresence>
 
       {/* --- SEO HEADER / NAVBAR --- */}
       <header>
         <nav 
-          aria-label="Main Navigation"
           className={`fixed top-0 w-full z-[100] transition-all duration-300 px-6 py-5 ${
             isScrolled ? "bg-white/90 backdrop-blur-xl shadow-xl py-4" : "bg-transparent"
           }`}
         >
           <div className="max-w-7xl mx-auto flex items-center justify-between">
-            <a href="/" className="flex items-center gap-3 cursor-pointer group" aria-label="FixIt Pro Home">
-              <div className="w-12 h-12 bg-orange-500 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-orange-200 group-hover:rotate-6 transition-transform">
-                <Hammer size={26} fill="currentColor" aria-hidden="true" />
+            {/* LOGO (LEFT) */}
+            <a href="/" className="flex items-center gap-3 cursor-pointer group">
+              <div className="w-12 h-12 bg-orange-500 rounded-2xl flex items-center justify-center text-white shadow-lg group-hover:rotate-6 transition-transform">
+                <Hammer size={26} fill="currentColor" />
               </div>
               <span className="text-3xl font-black tracking-tighter text-slate-900 uppercase">
                 FixIt<span className="text-orange-500">Pro</span>
               </span>
             </a>
 
-            <ul className="hidden lg:flex items-center gap-12">
-              {['Services', 'How It Works', 'Testimonials', 'About Us'].map((item) => (
+            {/* DESKTOP LINKS (CENTER) */}
+            <ul className="hidden lg:flex items-center gap-10">
+              {['Services', 'howitworks', 'Testimonials', 'About'].map((item) => (
                 <li key={item}>
-                  <a href={`#${item.toLowerCase().replace(/\s/g, '')}`} className="text-sm font-extrabold uppercase tracking-widest text-slate-600 hover:text-orange-600 transition-colors">
+                  <a href={`#${item.toLowerCase()}`} className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-600 hover:text-orange-600 transition-colors">
                     {item}
                   </a>
                 </li>
               ))}
             </ul>
 
+            {/* DESKTOP CTA (RIGHT) */}
             <div className="hidden lg:flex items-center gap-8">
               <div className="flex flex-col items-end border-r border-slate-200 pr-8">
-                <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">NJ Local Support</p>
-                <a href="tel:5550003494" className="text-lg font-black text-slate-900 tracking-tight hover:text-orange-500 transition-colors">
+                <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 leading-none mb-1">NJ Local Pro</p>
+                <a href="tel:5550003494" className="text-lg font-black text-slate-900 tracking-tight hover:text-orange-500 transition-colors leading-none">
                   (555) 000-FIXIT
                 </a>
               </div>
@@ -134,6 +139,7 @@ export default function Home({ setIsFormOpen }) {
               </button>
             </div>
 
+            {/* MOBILE TOGGLE */}
             <button className="lg:hidden text-slate-900 p-2" onClick={() => setMobileMenuOpen(true)}>
               <Menu size={32} />
             </button>
@@ -142,8 +148,8 @@ export default function Home({ setIsFormOpen }) {
       </header>
 
       {/* --- HERO SECTION --- */}
-      <section className="relative pt-32 pb-12 lg:pt-0 lg:pb-0 px-6 flex items-center">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <section className="relative pt-40 pb-24 lg:pt-0 lg:pb-0 px-6 flex items-center min-h-[90vh]">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center w-full">
           <div className="lg:col-span-7">
             <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
               <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-orange-50 border border-orange-100 rounded-full mb-6">
@@ -154,7 +160,7 @@ export default function Home({ setIsFormOpen }) {
                 <span className="text-[11px] font-black uppercase tracking-[0.2em] text-orange-600">Top Rated Handyman in New Jersey</span>
               </div>
 
-              <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-slate-900 tracking-tighter leading-[0.85] mb-8">
+              <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-slate-900 tracking-tighter leading-[0.85] mb-8 uppercase">
                 Premium Home <br />
                 Repair <span className="text-orange-500 italic">Expertise.</span>
               </h1>
@@ -164,21 +170,9 @@ export default function Home({ setIsFormOpen }) {
               </p>
 
               <div className="flex flex-wrap gap-6">
-                <button 
-                  onClick={handleOpenForm}
-                  className="px-12 py-6 bg-orange-500 text-white rounded-3xl font-black uppercase tracking-widest text-sm hover:bg-orange-600 shadow-2xl shadow-orange-200 transition-all active:scale-95 flex items-center gap-4"
-                >
+                <button onClick={handleOpenForm} className="px-12 py-6 bg-orange-500 text-white rounded-3xl font-black uppercase tracking-widest text-sm hover:bg-orange-600 shadow-2xl shadow-orange-200 transition-all flex items-center gap-4">
                   Request a Free Quote <ArrowRight size={20} />
                 </button>
-                
-                <div className="flex items-center gap-5 px-8 py-5 bg-white rounded-3xl border border-slate-100 shadow-xl shadow-slate-200/50">
-                   <div className="flex items-center text-orange-400 gap-1">
-                      {[1,2,3,4,5].map(i => <Star key={i} size={16} fill="currentColor" />)}
-                   </div>
-                   <p className="text-xs font-black uppercase tracking-tight leading-none text-slate-400">
-                     Highest Rated<br/><span className="text-slate-900 text-base">Local Pro in NJ</span>
-                   </p>
-                </div>
               </div>
             </motion.div>
           </div>
@@ -208,19 +202,37 @@ export default function Home({ setIsFormOpen }) {
         </div>
       </section>
 
-      {/* Mobile Menu */}
+      {/* --- ELITE DARK MOBILE MENU --- */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.aside initial={{ opacity: 0, x: "100%" }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: "100%" }} className="fixed inset-0 z-[110] bg-white p-8 flex flex-col">
-            <div className="flex justify-between items-center mb-20">
-              <span className="text-3xl font-black tracking-tighter uppercase">FixIt<span className="text-orange-500">Pro</span></span>
-              <button onClick={() => setMobileMenuOpen(false)}><X size={32} /></button>
+          <motion.aside 
+            initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }} 
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="fixed inset-0 z-[1000] bg-slate-950 p-8 flex flex-col justify-between"
+          >
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: `url('https://www.transparenttextures.com/patterns/carbon-fibre.png')` }} />
+            
+            <div>
+              <div className="flex justify-between items-center mb-16">
+                <span className="text-2xl font-black tracking-tighter uppercase text-white">FixIt<span className="text-orange-500">Pro</span></span>
+                <button onClick={() => setMobileMenuOpen(false)} className="w-12 h-12 bg-slate-900 rounded-2xl flex items-center justify-center text-white border border-slate-800">
+                  <X size={24} />
+                </button>
+              </div>
+              <ul className="flex flex-col gap-6">
+                {['Services', 'Howitworks', 'Testimonials', 'About'].map((item) => (
+                  <li key={item}><a href={`#${item.toLowerCase()}`} onClick={() => setMobileMenuOpen(false)} className="text-5xl font-black tracking-tighter text-white uppercase hover:text-orange-500 transition-colors">{item}</a></li>
+                ))}
+              </ul>
             </div>
-            <ul className="flex flex-col gap-10">
-              {['Services', 'Process', 'Reviews', 'Contact'].map((item) => (
-                <li key={item}><a href="#" className="text-5xl font-black tracking-tighter text-slate-900 uppercase">{item}</a></li>
-              ))}
-            </ul>
+
+            <div className="space-y-6">
+              <a href="tel:5550003494" className="flex items-center gap-4 text-white">
+                 <div className="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center"><Phone size={18} /></div>
+                 <span className="font-black tracking-widest uppercase text-sm">(555) 000-FIXIT</span>
+              </a>
+              <button onClick={handleOpenForm} className="w-full py-6 bg-white text-slate-950 rounded-2xl font-black uppercase tracking-widest text-xs">Book Appointment</button>
+            </div>
           </motion.aside>
         )}
       </AnimatePresence>
