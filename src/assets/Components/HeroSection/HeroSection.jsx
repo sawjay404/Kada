@@ -116,7 +116,7 @@ export default function Home({ setIsFormOpen }) {
             <ul className="hidden lg:flex items-center gap-10">
               {['Services', 'howitworks', 'Testimonials', 'About'].map((item) => (
                 <li key={item}>
-                  <a href={`#${item.toLowerCase()}`} className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-600 hover:text-orange-600 transition-colors">
+                  <a href={`#${item.toLowerCase()}`} className="text-sm font-black uppercase tracking-widest text-slate-900 hover:text-orange-600 transition-colors">
                     {item}
                   </a>
                 </li>
