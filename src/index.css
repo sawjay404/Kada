@@ -1,1 +1,78 @@
 @import "tailwindcss";
+
+@theme {
+  /* --- 2026 Modern Salon Palette --- */
+  --color-aurora-forest: #004B4D;   /* Deep High-end Teal */
+  --color-aurora-sage: #9CAF88;     /* Organic Muted Green */
+  --color-aurora-cream: #F5F5E9;    /* Paper-like Neutral Background */
+  --color-aurora-slate: #2D2D2D;    /* Soft Black for Text */
+  --color-aurora-clay: #F0EFE6;     /* Secondary Section Background */
+
+  /* --- Typography --- */
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif;
+
+  /* --- Custom Animations --- */
+  --animate-reveal: reveal 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes reveal {
+  from { 
+    opacity: 0; 
+    transform: translateY(30px); 
+    filter: blur(8px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+    filter: blur(0); 
+  }
+}
+
+/* --- Base Customizations --- */
+@layer base {
+  html {
+    scroll-behavior: smooth !important;
+  }
+
+  body {
+    /* Background and text defaults */
+    @apply bg-aurora-cream text-aurora-slate antialiased;
+    /* Removed the custom SVG cursor line to restore system defaults */
+  }
+
+  /* Selection color for that branded touch */
+  ::selection {
+    @apply bg-aurora-forest text-aurora-cream;
+  }
+
+  /* --- Premium Minimalist Scrollbar --- */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-aurora-cream;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-aurora-sage/30 rounded-full transition-colors;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-aurora-forest/40;
+  }
+}
+
+/* --- Utilities --- */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Utility for the Masked Text Reveal used in About.jsx */
+  .mask-reveal {
+    mask-image: linear-gradient(to bottom, black 0%, black 100%);
+    overflow: hidden;
+  }
+}
